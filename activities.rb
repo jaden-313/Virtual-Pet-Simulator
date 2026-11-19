@@ -1,18 +1,49 @@
-class Pet
+module Activities
+
   def feed
+    update_needs
+
     @hunger = [@hunger - 20, 0].max
-    puts "#{@name} has been fed. Hunger level is now #{@hunger}/100."
+
+    puts "\n#{@name} has been fed!"
+    puts "Hunger level is now #{@hunger}/100."
+
+    earn_money(2)
   end
 
   def play
+    update_needs
+
+    if @energy < 10
+      puts "#{@name} is too tired to play."
+      return
+    end
+
     @happiness = [@happiness + 15, 100].min
     @energy = [@energy - 10, 0].max
     @hunger = [@hunger + 10, 100].min
-    puts "You played with #{@name}! Happiness level is now #{@happiness}/100, energy level is #{@energy}/100, and hunger level is #{@hunger}/100."
+
+    puts "\nYou played with #{@name}!"
+    puts "#{@name} is having fun!"
+
+    puts "Happiness: #{@happiness}/100"
+    puts "Energy: #{@energy}/100"
+    puts "Hunger: #{@hunger}/100"
+
+    earn_money(5)
   end
 
   def sleep
+    update_needs
+
     @energy = [@energy + 30, 100].min
     @hunger = [@hunger + 10, 100].min
-    puts "#{@name} took a nap. Energy level is now #{@energy}/100 and hunger level is #{@hunger}/100."
+
+    puts "\n#{@name} took a nap."
+    puts "Energy level is now #{@energy}/100."
+    puts "Hunger level is now #{@hunger}/100."
+
+    earn_money(2)
   end
+
+end
