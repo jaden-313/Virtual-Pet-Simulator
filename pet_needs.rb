@@ -36,7 +36,8 @@ module PetNeeds
 
     elsif @hunger < 30 &&
           @energy > 50 &&
-          @happiness > 50
+          @happiness > 50 &&
+          @health < 100
 
       @health = [@health + 2, 100].min
       puts "#{@name} is recovering! Health increased by 2."

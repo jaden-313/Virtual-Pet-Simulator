@@ -1,15 +1,23 @@
 module Activities
 
+
   def feed
     update_needs
 
-    @hunger = [@hunger - 20, 0].max
+    if @hunger <= 5
+      puts "\n#{@name} is already full and doesn't want to eat!"
+      return false
+    end
+
+    @hunger = [@hunger - 30, 0].max
 
     puts "\n#{@name} has been fed!"
     puts "Hunger level is now #{@hunger}/100."
 
     earn_money(2)
+    true
   end
+
 
   def play
     update_needs
